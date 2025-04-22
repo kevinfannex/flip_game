@@ -27,6 +27,8 @@ function App() {
   const [timer, setTimer] = useState(0);
   const [lastMatchedPair, setLastMatchedPair] = useState<string[]>([]);
   const [showPoliceEffect, setShowPoliceEffect] = useState(false);
+  // URL for redirection - you'll need to replace this with your actual URL
+  const redirectUrl = "YOUR_REDIRECT_URL_HERE"; 
 
   useEffect(() => {
     let interval: number;
@@ -115,15 +117,9 @@ function App() {
     return array;
   }
 
-  const resetGame = () => {
-    setCards(shuffleCards([...cardData]));
-    setFlippedCards([]);
-    setMatchedPairs([]);
-    setMoves(0);
-    setTimer(0);
-    setGameStarted(false);
-    setLastMatchedPair([]);
-    setShowPoliceEffect(false);
+  // Function to redirect to another webpage
+  const handleRedirect = () => {
+    window.location.href = redirectUrl;
   };
 
   const formatTime = (seconds: number) => {
@@ -266,10 +262,10 @@ function App() {
               <p className="text-xl mb-4">You've successfully matched all crew members!</p>
               <p className="text-2xl mb-4">Time: {formatTime(timer)} | Moves: {moves}</p>
               <button
-                onClick={resetGame}
+                onClick={handleRedirect}
                 className="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-lg transition-colors text-lg font-semibold"
               >
-                Plan Another Heist
+                Continue to Next Challenge
               </button>
             </div>
           </div>
